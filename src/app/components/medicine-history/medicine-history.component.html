@@ -1,0 +1,38 @@
+<div class="medicine-history-container">
+  <div class="header">
+    <button class="back-button" (click)="navigateBack()">
+      <img src="assets/images/arrow.svg" alt="Back" class="back-arrow">
+    </button>
+  </div>
+
+  <div class="stats-card">
+    <h1 class="stats-title">Estadísticas</h1>
+    <div class="stats-content">
+      <div class="compliance">
+        <div class="circle-chart">
+          <span class="percentage">{{ compliancePercentage }}%</span>
+        </div>
+        <span class="label">Cumplimiento</span>
+      </div>
+      <div class="omitted-days">
+        <span class="number">{{ omittedDays }}</span>
+        <span class="label">Días omitidos</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="history-title">Historial de tomas</h2>
+
+  <div class="medicine-history-list">
+    <div class="medicine-item-card" *ngFor="let item of medicineHistory">
+      <div class="item-details">
+        <span class="medicine-name">{{ item.name }}</span>
+        <span class="medicine-date">{{ item.date }}</span>
+        <span class="patient-name">Paciente: {{ item.patientName }}</span>
+      </div>
+      <div class="item-status" [class.taken]="item.status === 'Tomado'" [class.omitted]="item.status === 'Omitido'">
+        {{ item.status }}
+      </div>
+    </div>
+  </div>
+</div> 

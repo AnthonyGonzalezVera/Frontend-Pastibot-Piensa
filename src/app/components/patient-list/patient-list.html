@@ -1,0 +1,28 @@
+<div class="patient-list-container">
+  <div class="header-section">
+    <button class="back-button" (click)="goBack()">
+      <img src="assets/images/arrow.svg" alt="Back">
+    </button>
+    <span class="header-title">Mis Pacientes</span>
+  </div>
+
+  <div *ngIf="patients.length === 0" class="no-patients-message">
+    <p>No tienes pacientes registrados aún. <a routerLink="/pacientes/nuevo">¡Registra uno ahora!</a></p>
+  </div>
+
+  <div class="patient-cards-container">
+    <div class="patient-card" *ngFor="let patient of patients" (click)="navigateToProfile(patient.id)">
+      <div class="patient-avatar">
+        <img src="assets/images/perfil.jpg" alt="Avatar">
+      </div>
+      <div class="patient-details">
+        <h3 class="patient-name">{{ patient.nombre }}</h3>
+        <p class="patient-info">Edad: {{ patient.edad }} | Sexo: {{ patient.sexo }}</p>
+        <p class="patient-info">Enfermedades: {{ patient.enfermedades }}</p>
+      </div>
+      <div class="arrow-icon">
+        <img src="assets/images/arrow_right.svg" alt="Ver perfil">
+      </div>
+    </div>
+  </div>
+</div>

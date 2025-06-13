@@ -1,0 +1,208 @@
+.medicine-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-arrow {
+  width: 30px;
+  height: auto;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.bot-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.slogan {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.medicine-detail-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 450px;
+  padding: 0 20px 20px;
+}
+
+.detail-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.medicine-name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 34px; /* Align with info icon */
+}
+
+.dose-info,
+.time-info,
+.instruction {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #555;
+}
+
+.taken-status {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.taken-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  accent-color: #6200EE; /* Example color, adjust to your theme */
+}
+
+.taken-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6200EE; /* Example color, adjust to your theme */
+}
+
+.delete-button-detail {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button-detail:hover {
+  background-color: #c9302c;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.no-medicines-message {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #777;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px;
+  }
+
+  .bot-image {
+    width: 80px;
+  }
+
+  .slogan {
+    font-size: 18px;
+  }
+
+  .medicine-detail-cards-container {
+    padding: 0 15px 15px;
+  }
+
+  .detail-card {
+    padding: 15px;
+  }
+
+  .medicine-name {
+    font-size: 20px;
+  }
+
+  .dose-info,
+  .time-info,
+  .instruction,
+  .taken-label {
+    font-size: 14px;
+  }
+
+  .taken-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .delete-button-detail {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+} 

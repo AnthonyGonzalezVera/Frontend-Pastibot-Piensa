@@ -1,0 +1,264 @@
+.add-medicine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #fff;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-button img {
+  width: 80px;
+  height: 50px;
+}
+
+.header-bot-image {
+  width: 80px;
+  height: auto;
+}
+
+.qr-code-icon {
+  width: 24px;
+  height: 24px;
+  /* Placeholder for QR code icon if it's an actual icon/image */
+  /* background-color: #ccc; */
+}
+
+.title {
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.medicine-form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-label {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: #aaa;
+}
+
+.save-button {
+  background-color: #31A8FF;
+  color: #fff;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.save-button:disabled {
+  background-color: #cbe3f7;
+  cursor: not-allowed;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #2196f3;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-image {
+  width: 120px;
+  height: auto;
+  margin-bottom: 30px;
+  animation: pulse 2s infinite;
+}
+
+.loading-progress-container {
+  width: 300px;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.loading-progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: #31A8FF;
+  animation: progress 2s infinite linear;
+  transform-origin: 0% 50%;
+}
+
+.loading-text {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.loading-final-message {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+@keyframes progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .add-medicine-container {
+    padding: 15px;
+  }
+
+  .header-bot-image {
+    width: 60px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .medicine-form {
+    max-width: 100%;
+  }
+
+  .form-label {
+    font-size: 14px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .save-button {
+    padding: 12px 15px;
+    font-size: 18px;
+  }
+
+  .loading-image {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+
+  .loading-progress-container {
+    width: 200px;
+    height: 6px;
+  }
+
+  .loading-text {
+    font-size: 16px;
+  }
+
+  .loading-final-message {
+    font-size: 20px;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.toggle-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-button {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+
+  &.active {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
+  }
+
+  &:hover:not(.active) {
+    background: #f8f9fa;
+  }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+} 

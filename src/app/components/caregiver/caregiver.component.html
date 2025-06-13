@@ -1,0 +1,76 @@
+<div class="caregiver-container">
+  <div class="welcome-title">
+    <h1>Bienvenido a Pastibot!</h1>
+  </div>
+
+  <!-- Carrusel de cartas -->
+  <div class="main-cards-carousel" [class.mobile]="isMobile">
+    <div class="main-cards-wrapper" [ngClass]="{ 'swipe': isMobile }"
+      [style.transform]="isMobile ? 'translateX(-' + (activeCard * 100) + 'vw)' : ''"
+      (swipeleft)="onSwipeLeft()" (swiperight)="onSwipeRight()">
+      <!-- Carta 1: Añadir medicamento -->
+      <div class="main-card-outer-exact">
+        <div class="main-card-inner-exact">
+          <div class="main-card-img-bg">
+            <img class="main-card-img-bot" src="assets/images/welcome-image.svg" alt="Pastibot">
+          </div>
+          <div class="main-card-content-exact">
+            <div class="main-card-title-exact">Añadir medicamento</div>
+            <div class="main-card-bar-exact"></div>
+            <div class="main-card-row-exact">
+              <div class="main-card-desc-exact">
+                <span class="main-card-action-exact">Organizar medicación</span>
+                <span class="main-card-sub-exact">con PASTIBOT</span>
+              </div>
+              <button class="main-card-btn-exact" (click)="startMedication()">Empezar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Carta 2: Añadir paciente -->
+      <div class="main-card-outer-exact">
+        <div class="main-card-inner-exact">
+          <div class="main-card-img-bg">
+            <img class="main-card-img-bot" src="assets/images/welcome-image.svg" alt="Pastibot">
+          </div>
+          <div class="main-card-content-exact">
+            <div class="main-card-title-exact">Añadir paciente</div>
+            <div class="main-card-bar-exact"></div>
+            <div class="main-card-row-exact">
+              <div class="main-card-desc-exact">
+                <span class="main-card-action-exact">Registrar paciente</span>
+                <span class="main-card-sub-exact">con PASTIBOT</span>
+              </div>
+              <button class="main-card-btn-exact" (click)="addPaciente()">Añadir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section plan-section">
+    <div class="section-title">Plan de medicación</div>
+    <div class="plan-grid">
+      <div class="plan-item" *ngFor="let item of menuItems" (click)="navigateTo(item.route)">
+        <div class="plan-icon">
+          <img [src]="item.icon" [alt]="item.title">
+        </div>
+        <div class="plan-label">{{ item.title }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section other-section">
+    <div class="section-title">Otras funciones</div>
+    <div class="other-grid">
+      <div class="other-item" *ngFor="let item of otherFunctions" 
+           (click)="navigateTo(item.route)">
+        <div class="other-icon">
+          <img [src]="item.icon" [alt]="item.title">
+        </div>
+        <div class="other-label">{{ item.title }}</div>
+      </div>
+    </div>
+  </div>
+</div> 

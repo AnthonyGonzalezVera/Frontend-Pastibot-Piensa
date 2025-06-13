@@ -1,0 +1,67 @@
+// Footer Navigation Styles
+.navigation-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+  width: 60px;
+}
+
+.footer-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+// Account Dropdown Menu Styles
+.account-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  margin-bottom: 10px;
+  min-width: 200px;
+  z-index: 1001;
+}
+
+.dropdown-option {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.dropdown-option:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-option.logout {
+  color: #ff4444;
+  border-top: 1px solid #eee;
+}
+
+// Add padding to the bottom of the main content to prevent footer overlap
+:host {
+  display: block;
+  padding-bottom: 60px;
+} 

@@ -1,0 +1,52 @@
+<div class="support-family-container">
+  <div class="card-container">
+    <div class="image-placeholder">
+      <img src="assets/images/welcome-image.svg" alt="Pastibot Support">
+    </div>
+    <div class="title-text">
+      <ng-container *ngIf="activeCard === 0">
+        <h2>Apoyo Familiar</h2>
+      </ng-container>
+      <ng-container *ngIf="activeCard === 1">
+        <h2>Vincular Familiar</h2>
+      </ng-container>
+      <ng-container *ngIf="activeCard === 2">
+        <h2>Vinculado</h2>
+      </ng-container>
+    </div>
+    <div class="content-area">
+      <ng-container *ngIf="activeCard === 1">
+        <div class="form-group">
+          <label for="paciente">Seleccionar Paciente:</label>
+          <select id="paciente" [(ngModel)]="selectedPacienteId" class="form-control">
+            <option [ngValue]="0">Seleccione un paciente</option>
+            <option *ngFor="let paciente of pacientes" [ngValue]="paciente.id">
+              {{paciente.nombre}} {{paciente.apellido}}
+            </option>
+          </select>
+        </div>
+        <div class="phone-input-group">
+          <label for="phoneNumber">Número telefónico</label>
+          <input type="tel" id="phoneNumber" [(ngModel)]="phoneNumber" placeholder="Ingrese el número">
+          <div class="error-message" *ngIf="error">{{ error }}</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="activeCard === 2">
+        <div class="success-message">
+          <p>¡Familiar vinculado exitosamente!</p>
+          <p>Ahora podrás recibir notificaciones sobre el estado de tu paciente.</p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="dots-indicator">
+      <span class="dot" [class.active]="activeCard === 0"></span>
+      <span class="dot" [class.active]="activeCard === 1"></span>
+      <span class="dot" [class.active]="activeCard === 2"></span>
+    </div>
+  </div>
+  <button class="save-button" (click)="save()" [disabled]="isLoading || (activeCard === 1 && (!phoneNumber || selectedPacienteId === 0))" *ngIf="activeCard !== 2">
+    <span *ngIf="!isLoading && activeCard !== 0">Guardar</span>
+    <span *ngIf="!isLoading && activeCard === 0">Continuar</span>
+    <ng-container *ngIf="isLoading">Guardando...</ng-container>
+  </button>
+</div> 

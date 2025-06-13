@@ -1,0 +1,54 @@
+<div class="login-container">
+  <div class="image-container">
+    <img src="assets/images/welcome-image.svg" alt="Welcome" class="welcome-image">
+  </div>
+  
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input 
+        type="email" 
+        formControlName="email" 
+        class="input-field" 
+        placeholder="Email"
+        [ngClass]="{'error': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
+      >
+      <div class="error-message" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched">
+        El email es requerido
+      </div>
+      <div class="error-message" *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
+        Ingrese un email válido
+      </div>
+
+      <input 
+        type="password" 
+        formControlName="password" 
+        class="input-field" 
+        placeholder="Contraseña"
+        [ngClass]="{'error': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+      >
+      <div class="error-message" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">
+        La contraseña es requerida
+      </div>
+      <div class="error-message" *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched">
+        La contraseña debe tener al menos 6 caracteres
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <button 
+        type="submit" 
+        class="login-button" 
+        [ngClass]="{'active': loginForm.valid}"
+        [disabled]="loginForm.invalid"
+      >
+        Iniciar Sesión
+      </button>
+    </form>
+
+    <div class="register-link">
+      ¿No tienes una cuenta? <a (click)="navigateToRegister()">Regístrate aquí</a>
+    </div>
+  </div>
+</div> 

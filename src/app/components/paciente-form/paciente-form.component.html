@@ -1,0 +1,53 @@
+<div class="paciente-form-container">
+  <div class="header-section">
+    <button class="back-button" (click)="goBack()">
+      <img src="assets/images/arrow.svg" alt="Back">
+    </button>
+    <img src="assets/images/welcome-image.svg" alt="Bot" class="paciente-form-bot">
+    <h1 class="paciente-form-title">TUS DATOS</h1>
+  </div>
+
+  <form [formGroup]="pacienteForm" (ngSubmit)="onSubmit()" class="paciente-form-body">
+    <label class="paciente-label">Nombre completo</label>
+    <input type="text" formControlName="nombre" class="paciente-input" placeholder="" />
+
+    <label class="paciente-label">Sexo</label>
+    <select formControlName="sexo" class="paciente-input">
+      <option value="" disabled selected>Seleccione</option>
+      <option *ngFor="let s of sexos" [value]="s.value">{{ s.label }}</option>
+    </select>
+
+    <label class="paciente-label">Edad</label>
+    <input type="number" formControlName="edad" class="paciente-input" placeholder="" min="0" />
+
+    <label class="paciente-label">Enfermedades</label>
+    <input type="text" formControlName="enfermedades" class="paciente-input" placeholder="" />
+
+    <label class="paciente-label">Número Telefónico del cuidador</label>
+    <input type="tel" formControlName="telefonoCuidador" class="paciente-input" placeholder="" />
+
+    <button type="submit" class="paciente-btn" [disabled]="pacienteForm.invalid || isSaving">
+      Guardar
+    </button>
+  </form>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" *ngIf="isSaving">
+    <img src="assets/images/welcome-image.svg" alt="Pastibot Loading" class="loading-image">
+    <div *ngIf="toastMessage === ''">
+      <div class="loading-progress-container">
+        <div class="loading-progress-bar"></div>
+      </div>
+      <div class="loading-text">Guardando datos...</div>
+    </div>
+    <div class="loading-text loading-final-message" *ngIf="toastMessage !== ''">
+      {{ toastMessage }}
+    </div>
+  </div>
+
+  <!-- Toast message for success/error (only visible after saving attempt) -->
+  <!-- The toast is now handled within the loading overlay for a cleaner transition -->
+  <!-- <div class="toast" *ngIf="showToast && !isSaving">
+    {{ toastMessage }}
+  </div> -->
+</div> 

@@ -1,0 +1,82 @@
+<div class="add-medicine-container">
+  <div class="header">
+    <button class="back-button" (click)="navigateBack()">
+      <img src="assets/images/arrow.svg" alt="Back">
+    </button>
+    <img src="assets/images/welcome-image.svg" alt="Bot" class="header-bot-image">
+    <span class="qr-code-icon"></span>
+  </div>
+
+  <h1 class="title">Añadir medicamento</h1>
+
+  <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()" class="medicine-form">
+    <label for="nombre" class="form-label">Nombre del medicamento</label>
+    <input type="text" id="nombre" formControlName="nombre" class="form-input" placeholder="Ingrese el nombre" />
+
+    <label for="dosis" class="form-label">Dosis</label>
+    <input type="text" id="dosis" formControlName="dosis" class="form-input" placeholder="Ingrese la dosis" />
+
+    <label for="frecuencia" class="form-label">Frecuencia</label>
+    <select id="frecuencia" formControlName="frecuencia" class="form-input">
+      <option value="">Seleccione la frecuencia</option>
+      <option value="cada 4 horas">Cada 4 horas</option>
+      <option value="cada 6 horas">Cada 6 horas</option>
+      <option value="cada 8 horas">Cada 8 horas</option>
+      <option value="cada 12 horas">Cada 12 horas</option>
+      <option value="cada 24 horas">Cada 24 horas</option>
+      <option value="cada 48 horas">Cada 48 horas</option>
+      <option value="cada 72 horas">Cada 72 horas</option>
+    </select>
+
+    <label for="horaFecha" class="form-label">Hora y Fecha de medicación</label>
+    <input type="datetime-local" id="horaFecha" formControlName="horaFecha" class="form-input" />
+
+    <div class="form-group">
+      <div class="toggle-container">
+        <button type="button" class="toggle-button" [class.active]="useDuration" (click)="toggleInputType()">
+          Duración en días
+        </button>
+        <button type="button" class="toggle-button" [class.active]="!useDuration" (click)="toggleInputType()">
+          Total de dosis
+        </button>
+      </div>
+
+      <div *ngIf="useDuration">
+        <label for="durationInDays" class="form-label">Duración del tratamiento (días)</label>
+        <input type="number" id="durationInDays" formControlName="durationInDays" class="form-input" placeholder="Ingrese la duración en días" />
+      </div>
+
+      <div *ngIf="!useDuration">
+        <label for="totalDoses" class="form-label">Total de dosis</label>
+        <input type="number" id="totalDoses" formControlName="totalDoses" class="form-input" placeholder="Ingrese el total de dosis" />
+      </div>
+    </div>
+
+    <label for="paciente" class="form-label">Paciente *</label>
+    <select id="paciente" formControlName="pacienteId" class="form-input">
+      <option value="">Seleccione un paciente</option>
+      <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{ paciente.nombre }}</option>
+    </select>
+    <div class="error-message" *ngIf="medicineForm.get('pacienteId')?.invalid && medicineForm.get('pacienteId')?.touched">
+      Por favor seleccione un paciente
+    </div>
+
+    <button type="submit" class="save-button" [disabled]="medicineForm.invalid || isSaving">
+      Guardar medicamento
+    </button>
+  </form>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" *ngIf="isSaving">
+    <img src="assets/images/welcome-image.svg" alt="Pastibot Loading" class="loading-image">
+    <div *ngIf="toastMessage === ''">
+      <div class="loading-progress-container">
+        <div class="loading-progress-bar"></div>
+      </div>
+      <div class="loading-text">Guardando medicamento...</div>
+    </div>
+    <div class="loading-text loading-final-message" *ngIf="toastMessage !== ''">
+      {{ toastMessage }}
+    </div>
+  </div>
+</div> 

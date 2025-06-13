@@ -1,0 +1,92 @@
+<div class="register-container">
+  <div class="image-container">
+    <img src="assets/images/welcome-image.svg" alt="Welcome" class="welcome-image">
+  </div>
+
+  <form [formGroup]="registerForm" class="form-container" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="input-field" 
+        placeholder="Nombres"
+        formControlName="nombres"
+        [class.error]="nombres?.invalid && nombres?.touched"
+      >
+      <div class="error-message" *ngIf="nombres?.invalid && nombres?.touched">
+        <span *ngIf="nombres?.errors?.['required']">Los nombres son requeridos</span>
+        <span *ngIf="nombres?.errors?.['minlength']">Mínimo 2 caracteres</span>
+        <span *ngIf="nombres?.errors?.['pattern']">Solo letras y espacios</span>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="input-field" 
+        placeholder="Apellidos"
+        formControlName="apellidos"
+        [class.error]="apellidos?.invalid && apellidos?.touched"
+      >
+      <div class="error-message" *ngIf="apellidos?.invalid && apellidos?.touched">
+        <span *ngIf="apellidos?.errors?.['required']">Los apellidos son requeridos</span>
+        <span *ngIf="apellidos?.errors?.['minlength']">Mínimo 2 caracteres</span>
+        <span *ngIf="apellidos?.errors?.['pattern']">Solo letras y espacios</span>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input 
+        type="email" 
+        class="input-field" 
+        placeholder="Correo electrónico"
+        formControlName="email"
+        [class.error]="email?.invalid && email?.touched"
+      >
+      <div class="error-message" *ngIf="email?.invalid && email?.touched">
+        <span *ngIf="email?.errors?.['required']">El correo es requerido</span>
+        <span *ngIf="email?.errors?.['email']">Correo electrónico inválido</span>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input 
+        type="password" 
+        class="input-field" 
+        placeholder="Contraseña"
+        formControlName="password"
+        [class.error]="password?.invalid && password?.touched"
+      >
+      <div class="error-message" *ngIf="password?.invalid && password?.touched">
+        <span *ngIf="password?.errors?.['required']">La contraseña es requerida</span>
+        <span *ngIf="password?.errors?.['minlength']">Mínimo 6 caracteres</span>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="input-field" 
+        placeholder="Enlace del dispositivo"
+        formControlName="deviceLink"
+        [class.error]="deviceLink?.invalid && deviceLink?.touched"
+      >
+      <div class="error-message" *ngIf="deviceLink?.invalid && deviceLink?.touched">
+        <span *ngIf="deviceLink?.errors?.['required']">El enlace es requerido</span>
+        <span *ngIf="deviceLink?.errors?.['pattern']">Debe ser una URL válida</span>
+      </div>
+    </div>
+
+    <button 
+      type="submit"
+      class="login-button" 
+      [class.active]="isFormValid"
+      [disabled]="!isFormValid"
+    >
+      Registrarse
+    </button>
+
+    <p class="login-link">
+      ¿Ya tienes una cuenta? <a (click)="navigateToLogin()">Inicia sesión aquí</a>
+    </p>
+  </form>
+</div> 

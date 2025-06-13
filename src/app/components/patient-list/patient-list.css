@@ -1,0 +1,112 @@
+.patient-list-container {
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 15px;
+}
+
+.back-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.no-patients-message {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+  font-size: 1.1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.no-patients-message a {
+  color: #31a8ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.no-patients-message a:hover {
+  text-decoration: underline;
+}
+
+.patient-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.patient-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.patient-card:hover {
+  transform: translateY(-3px);
+}
+
+.patient-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e0f2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.patient-avatar img {
+  width: 45px;
+  height: 45px;
+}
+
+.patient-details {
+  flex-grow: 1;
+}
+
+.patient-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.patient-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.arrow-icon img {
+  width: 24px;
+  height: 24px;
+  margin-left: 15px;
+}

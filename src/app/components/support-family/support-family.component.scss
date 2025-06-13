@@ -1,0 +1,159 @@
+.support-family-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #5ac4f8;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-container {
+  background: none;
+  border-radius: 0;
+  padding: 30px;
+  width: 100%;
+  max-width: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.image-placeholder {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.title-text {
+  text-align: center;
+
+  h2 {
+    color: #333;
+    margin: 0;
+    font-size: 24px;
+  }
+}
+
+.content-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+      border-color: #5ac4f8;
+    }
+  }
+}
+
+.phone-input-group {
+  width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: #5ac4f8;
+    }
+  }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success-message {
+  text-align: center;
+  color: #28a745;
+
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+}
+
+.dots-indicator {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &.active {
+      background-color: #888;
+    }
+  }
+}
+
+.save-button {
+  background-color: white;
+  color: #5ac4f8;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 50px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 0px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+} 

@@ -1,0 +1,205 @@
+.profile-container {
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 15px;
+}
+
+.back-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #e0f2f7; /* Light blue background for avatar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.user-avatar img {
+  width: 60px;
+  height: 60px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.user-status {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+.section-heading {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.medication-tracking {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.tracking-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tracking-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Gray circles */
+  margin-bottom: 5px;
+}
+
+.tracking-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.tracking-label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.verification-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  flex-basis: 100%;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  flex-grow: 1;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #31a8ff; /* Blue progress bar */
+  border-radius: 5px;
+}
+
+.progress-percentage {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #31a8ff; /* Blue text */
+  margin-right: 10px;
+}
+
+.progress-status {
+  font-size: 0.9rem;
+  color: #31a8ff; /* Blue text */
+}
+
+.diseases-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.diseases-section p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+.support-family-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.no-support-message {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+
+.support-family-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.support-family-info {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}

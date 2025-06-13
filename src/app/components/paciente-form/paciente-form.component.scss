@@ -1,0 +1,289 @@
+.paciente-form-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #fff;
+  position: relative;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 15px;
+}
+
+.back-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.paciente-form-bot {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.paciente-form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.paciente-form-body {
+  width: 90vw;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+.paciente-label {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.paciente-input {
+  width: 100%;
+  min-height: 70px;
+  background: #dbdbdb;
+  border: none;
+  border-radius: 32px;
+  font-size: 1.2rem;
+  font-family: Inter, Arial, sans-serif;
+  padding: 0 24px;
+  margin-bottom: 8px;
+  outline: none;
+  box-sizing: border-box;
+  color: #222;
+  transition: box-shadow 0.2s;
+}
+
+.paciente-input:focus {
+  box-shadow: 0 0 0 2px #a7d3f3;
+}
+
+.paciente-btn {
+  width: 100%;
+  min-height: 70px;
+  background: #99cdfa;
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 32px;
+  margin-top: 24px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.paciente-btn:disabled {
+  background: #cbe3f7;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.toast {
+  position: fixed;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4bb543;
+  color: #fff;
+  padding: 18px 32px;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 9999;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  text-align: center;
+}
+
+.loading-image {
+  width: 250px;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.loading-progress-container {
+  width: 300px;
+  height: 50px;
+  background: #e0e0e0;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.loading-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: #31a8ff;
+  border-radius: 25px;
+  animation: progress-animation 2s linear infinite;
+}
+
+.loading-text {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.loading-final-message {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-top: 20px;
+}
+
+@keyframes progress-animation {
+  0% { width: 0%; }
+  50% { width: 100%; }
+  100% { width: 0%; }
+}
+
+@media screen and (max-width: 700px) {
+  .paciente-form-header {
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  .paciente-form-bot {
+    width: 80px;
+  }
+
+  .paciente-form-title {
+    font-size: 1.8rem;
+  }
+
+  .paciente-form-body {
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .paciente-label {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .paciente-input {
+    min-height: 50px;
+    font-size: 1rem;
+    padding: 0 16px;
+    border-radius: 25px;
+  }
+
+  .paciente-btn {
+    min-height: 50px;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    margin-top: 16px;
+  }
+
+  .toast {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  .loading-image {
+    width: 150px;
+    margin-bottom: 30px;
+  }
+
+  .loading-progress-container {
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+  }
+
+  .loading-progress-bar {
+    border-radius: 20px;
+  }
+
+  .loading-text {
+    font-size: 1.4rem;
+  }
+
+  .loading-final-message {
+    font-size: 2rem;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .paciente-form-container {
+    padding: 20px;
+  }
+
+  .paciente-form-body {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+
+  .paciente-form-title {
+    font-size: 2.5rem;
+  }
+
+  .paciente-label {
+    font-size: 1.1rem;
+  }
+
+  .paciente-input {
+    font-size: 1.1rem;
+    min-height: 55px;
+  }
+
+  .paciente-btn {
+    font-size: 1.8rem;
+    min-height: 65px;
+  }
+} 

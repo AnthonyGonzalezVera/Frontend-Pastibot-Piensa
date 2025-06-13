@@ -1,0 +1,57 @@
+<div class="medicine-detail-container">
+  <div class="header">
+    <button class="back-button" (click)="navigateBack()">
+      <img src="assets/images/arrow.svg" alt="Back" class="back-arrow">
+    </button>
+  </div>
+
+  <div class="top-section">
+    <img src="assets/images/welcome-image.svg" alt="Bot" class="bot-image">
+    <p class="slogan">No olvides ni una dosis</p>
+  </div>
+
+  <h1 class="title">Detalles del Medicamento</h1>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Cargando detalles del medicamento...
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="medicines.length > 0 && !isLoading">
+    <div class="medicine-detail-cards-container">
+      <div class="detail-card" *ngFor="let medicine of medicines; let i = index">
+        <div class="card-header">
+          <img src="assets/images/info-icon.svg" alt="Info" class="info-icon">
+          <span class="medicine-name">{{ medicine.nombre }}</span>
+        </div>
+        <div class="card-content">
+          <p class="dose-info">Dosis: {{ medicine.dosis }}</p>
+          <p class="time-info">Hora: {{ medicine.horaFecha | date:'shortTime' }}</p>
+          <p class="instruction">Tómalo con agua</p>
+          <div class="taken-status">
+            <input type="checkbox" id="taken-checkbox-{{medicine.id}}" class="taken-checkbox" [checked]="takenStatus[medicine.id!]" (change)="onCheckboxChange(medicine.id!, $event)">
+            <label for="taken-checkbox-{{medicine.id}}" class="taken-label">Tomado</label>
+          </div>
+          <button class="delete-button" (click)="openDeleteConfirmation(medicine.id!)">
+            Eliminar medicamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="medicines.length === 0 && !isLoading && !errorMessage" class="no-medicines-message">
+    No hay medicamentos programados para hoy.
+  </div>
+</div>
+
+<app-confirm-modal
+  [isOpen]="showConfirmModal"
+  title="Eliminar medicamento"
+  message="¿Estás seguro de que deseas eliminar este medicamento?"
+  (confirm)="onConfirmDelete()"
+  (cancel)="onCancelDelete()"
+></app-confirm-modal> 

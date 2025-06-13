@@ -1,0 +1,82 @@
+<div class="profile-container">
+  <div class="header-section">
+    <button class="back-button" (click)="navigateBack()">
+      <img src="assets/images/arrow.svg" alt="Back">
+    </button>
+    <span class="header-title">Perfil</span>
+  </div>
+
+
+  <div class="user-info">
+    <div class="user-avatar">
+      <img src="assets/images/perfil.jpg" alt="Avatar">
+    </div>
+    <div class="user-details">
+      <h2 class="user-name">{{ patientName }}</h2>
+      <p class="user-status">{{ patientStatus }}</p>
+    </div>
+  </div>
+
+  <h3 class="section-heading">Rastrea la medicación</h3>
+  <div class="medication-tracking">
+    <div class="tracking-item">
+      <div class="tracking-circle"></div>
+      <span class="tracking-value">{{ compliancePercentage }}%</span>
+      <span class="tracking-label">Cumplimiento</span>
+    </div>
+    <div class="tracking-item">
+      <div class="tracking-circle"></div>
+      <span class="tracking-value">{{ dosesRemaining }}</span>
+      <span class="tracking-label">Dosis Restantes</span>
+    </div>
+    <div class="tracking-item">
+      <div class="tracking-circle"></div>
+      <span class="tracking-value">{{ chatBotUsagePercentage }}%</span>
+      <span class="tracking-label">ChatBot</span>
+    </div>
+  </div>
+
+  <h3 class="section-heading">Verificación Pastibot</h3>
+  <div class="verification-card">
+    <span class="card-title">Medicamentos</span>
+    <div class="progress-bar-container">
+      <div class="progress-bar" [style.width.%]="compliancePercentage"></div>
+    </div>
+    <span class="progress-percentage">{{ compliancePercentage }}%</span>
+    <span class="progress-status">{{ compliancePercentage >= 80 ? 'Excelente' : compliancePercentage >= 60 ? 'Bueno' : 'Necesita atención' }}</span>
+  </div>
+
+  <div class="verification-card">
+    <span class="card-title">Racha de Día</span>
+    <div class="progress-bar-container">
+      <div class="progress-bar" [style.width.%]="rachaDiaProgress"></div>
+    </div>
+    <span class="progress-percentage">{{ rachaDiaProgress }}%</span>
+    <span class="progress-status">{{ rachaDiaProgress >= 80 ? 'Excelente' : rachaDiaProgress >= 60 ? 'Bueno' : 'Necesita atención' }}</span>
+  </div>
+
+  <div class="verification-card">
+    <span class="card-title">Horarios</span>
+    <div class="progress-bar-container">
+      <div class="progress-bar" [style.width.%]="horariosProgress"></div>
+    </div>
+    <span class="progress-percentage">{{ horariosProgress }}%</span>
+    <span class="progress-status">{{ horariosProgress >= 80 ? 'Excelente' : horariosProgress >= 60 ? 'Bueno' : 'Necesita atención' }}</span>
+  </div>
+
+  <h3 class="section-heading">Enfermedades</h3>
+  <div class="diseases-section">
+    <p *ngIf="patient && patient.enfermedades">{{ patient.enfermedades }}</p>
+    <p *ngIf="!patient || !patient.enfermedades">No hay enfermedades registradas.</p>
+  </div>
+
+  <h3 class="section-heading">Familiares de Apoyo</h3>
+  <div class="support-family-list">
+    <div *ngIf="supportFamilies.length === 0" class="no-support-message">
+      No hay familiares de apoyo registrados para este paciente.
+    </div>
+    <div *ngFor="let family of supportFamilies" class="support-family-item">
+      <p class="support-family-info">Teléfono: {{ family.phoneNumber }} | Estado: {{ family.status === 'active' ? 'Activo' : 'Pendiente' }}</p>
+    </div>
+  </div>
+</div>
