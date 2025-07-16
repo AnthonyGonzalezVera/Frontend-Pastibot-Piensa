@@ -25,7 +25,7 @@ export class RegisterComponent {
       apellidos: ['', [Validators.required, Validators.minLength(2), Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      deviceLink: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+$/)]]
+     
     });
   }
 
@@ -33,7 +33,7 @@ export class RegisterComponent {
   get apellidos() { return this.registerForm.get('apellidos'); }
   get email() { return this.registerForm.get('email'); }
   get password() { return this.registerForm.get('password'); }
-  get deviceLink() { return this.registerForm.get('deviceLink'); }
+  
 
   get isFormValid(): boolean {
     return this.registerForm.valid;

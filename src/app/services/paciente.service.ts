@@ -9,7 +9,7 @@ export interface Paciente {
   apellido: string;
   fechaNacimiento: Date;
   genero: string;
-  telefono: string;
+
   email: string;
   direccion: string;
   createdAt: Date;

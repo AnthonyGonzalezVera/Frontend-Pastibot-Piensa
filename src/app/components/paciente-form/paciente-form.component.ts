@@ -33,7 +33,7 @@ export class PacienteFormComponent {
       sexo: ['', Validators.required],
       edad: ['', [Validators.required, Validators.min(0)]],
       enfermedades: ['', Validators.required],
-      telefonoCuidador: ['', [Validators.required, Validators.pattern(/^\d{7,15}$/)]],
+   
     });
   }
 

@@ -26,7 +26,7 @@ interface PacienteData {
   sexo?: string;
   edad?: number;
   enfermedades?: string;
-  telefonoCuidador?: string;
+ 
 }
 
 @Component({
@@ -382,16 +382,6 @@ export class ChatbotComponent implements OnInit {
         this.currentStep++;
         break;
 
-      case 4: // Teléfono del cuidador
-        const telefono = message.replace(/\D/g, '');
-        if (telefono.length >= 7 && telefono.length <= 15) {
-          this.pacienteData.telefonoCuidador = telefono;
-          this.addBotMessage('¿Quieres revisar los datos antes de guardar? (Escribe "sí" para revisar o "no" para guardar directamente)');
-          this.currentStep++;
-        } else {
-          this.addBotMessage('Por favor, ingresa un número de teléfono válido (entre 7 y 15 dígitos)');
-        }
-        break;
 
       case 5: // Confirmación
         if (normalizedMessage === 'si' || normalizedMessage === 'sí' || normalizedMessage === 'revisar') {
@@ -400,7 +390,7 @@ export class ChatbotComponent implements OnInit {
           this.addBotMessage(`Edad: ${this.pacienteData.edad}`);
           this.addBotMessage(`Sexo: ${this.pacienteData.sexo}`);
           this.addBotMessage(`Enfermedades: ${this.pacienteData.enfermedades}`);
-          this.addBotMessage(`Teléfono: ${this.pacienteData.telefonoCuidador}`);
+         
           this.addBotMessage('¿Los datos son correctos? (Escribe "sí" para guardar o "no" para empezar de nuevo)');
           this.currentStep++;
         } else {
@@ -421,7 +411,7 @@ export class ChatbotComponent implements OnInit {
 
   createPaciente(): void {
     if (!this.pacienteData.nombre || !this.pacienteData.edad || !this.pacienteData.sexo || 
-        !this.pacienteData.enfermedades || !this.pacienteData.telefonoCuidador) {
+        !this.pacienteData.enfermedades ) {
       this.addBotMessage('Lo siento, faltan datos requeridos para registrar el paciente. Por favor, intenta de nuevo.');
       this.isCreatingPaciente = false;
       this.currentStep = 0;

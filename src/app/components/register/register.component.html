@@ -62,20 +62,8 @@
       </div>
     </div>
     
-    <div class="input-group">
-      <input 
-        type="text" 
-        class="input-field" 
-        placeholder="Enlace del dispositivo"
-        formControlName="deviceLink"
-        [class.error]="deviceLink?.invalid && deviceLink?.touched"
-      >
-      <div class="error-message" *ngIf="deviceLink?.invalid && deviceLink?.touched">
-        <span *ngIf="deviceLink?.errors?.['required']">El enlace es requerido</span>
-        <span *ngIf="deviceLink?.errors?.['pattern']">Debe ser una URL válida</span>
-      </div>
-    </div>
-
+    
+    
     <button 
       type="submit"
       class="login-button" 

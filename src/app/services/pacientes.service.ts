@@ -9,7 +9,6 @@ export interface Paciente {
   sexo: string;
   edad: number;
   enfermedades: string;
-  telefonoCuidador: string;
   createdAt?: string;
 }
 
