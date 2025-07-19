@@ -8,19 +8,19 @@
   </div>
 
   <form [formGroup]="pacienteForm" (ngSubmit)="onSubmit()" class="paciente-form-body">
-    <label class="paciente-label">Nombre completo</label>
+    <label class="paciente-label">Nombre completo:</label>
     <input type="text" formControlName="nombre" class="paciente-input" placeholder="" />
 
-    <label class="paciente-label">Sexo</label>
+    <label class="paciente-label">Género:</label>
     <select formControlName="sexo" class="paciente-input">
-      <option value="" disabled selected>Seleccione</option>
+      <option value="" disabled selected>Seleccione...</option>
       <option *ngFor="let s of sexos" [value]="s.value">{{ s.label }}</option>
     </select>
 
-    <label class="paciente-label">Edad</label>
+    <label class="paciente-label">Edad:</label>
     <input type="number" formControlName="edad" class="paciente-input" placeholder="" min="0" />
 
-    <label class="paciente-label">Enfermedades</label>
+    <label class="paciente-label">Enfermedad:</label>
     <input type="text" formControlName="enfermedades" class="paciente-input" placeholder="" />
 
  

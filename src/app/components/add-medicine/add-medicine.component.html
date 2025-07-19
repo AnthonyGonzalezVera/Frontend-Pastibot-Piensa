@@ -10,15 +10,15 @@
   <h1 class="title">Añadir medicamento</h1>
 
   <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()" class="medicine-form">
-    <label for="nombre" class="form-label">Nombre del medicamento</label>
+    <label for="nombre" class="form-label">Nombre del medicamento:</label>
     <input type="text" id="nombre" formControlName="nombre" class="form-input" placeholder="Ingrese el nombre" />
 
-    <label for="dosis" class="form-label">Dosis</label>
+    <label for="dosis" class="form-label">Dosis:</label>
     <input type="text" id="dosis" formControlName="dosis" class="form-input" placeholder="Ingrese la dosis" />
 
-    <label for="frecuencia" class="form-label">Frecuencia</label>
+    <label for="frecuencia" class="form-label">Frecuencia:</label>
     <select id="frecuencia" formControlName="frecuencia" class="form-input">
-      <option value="">Seleccione la frecuencia</option>
+      <option value="">Seleccione la frecuencia:</option>
       <option value="cada 4 horas">Cada 4 horas</option>
       <option value="cada 6 horas">Cada 6 horas</option>
       <option value="cada 8 horas">Cada 8 horas</option>
@@ -28,7 +28,7 @@
       <option value="cada 72 horas">Cada 72 horas</option>
     </select>
 
-    <label for="horaFecha" class="form-label">Hora y Fecha de medicación</label>
+    <label for="horaFecha" class="form-label">Hora y Fecha de medicación:</label>
     <input type="datetime-local" id="horaFecha" formControlName="horaFecha" class="form-input" />
 
     <div class="form-group">
@@ -42,7 +42,7 @@
       </div>
 
       <div *ngIf="useDuration">
-        <label for="durationInDays" class="form-label">Duración del tratamiento (días)</label>
+        <label for="durationInDays" class="form-label">Duración del tratamiento (días):</label>
         <input type="number" id="durationInDays" formControlName="durationInDays" class="form-input" placeholder="Ingrese la duración en días" />
       </div>
 

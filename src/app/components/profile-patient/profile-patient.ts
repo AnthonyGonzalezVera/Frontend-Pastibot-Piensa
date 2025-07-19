@@ -61,7 +61,7 @@ export class ProfilePatient implements OnInit {
       next: (patient: Paciente) => {
         this.patient = patient;
         this.patientName = this.patient.nombre;
-        this.patientStatus = `Edad: ${this.patient.edad} años, Sexo: ${this.patient.sexo}, Enfermedades: ${this.patient.enfermedades}`;
+        this.patientStatus = `Edad: ${this.patient.edad} años, Género: ${this.patient.sexo}, Enfermedades: ${this.patient.enfermedades}`;
 
         this.medicinesService.getMedicines().subscribe({
           next: (allMedicines: Medicine[]) => {

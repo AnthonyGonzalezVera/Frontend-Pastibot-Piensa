@@ -337,7 +337,7 @@ export class ChatbotComponent implements OnInit {
           const edad = parseInt(message);
           if (edad > 0 && edad < 120) {
             this.pacienteData.edad = edad;
-            this.addBotMessage('¿Cuál es el sexo? Puedes escribir el número o el texto:');
+            this.addBotMessage('¿Cuál es el género? Puedes escribir el número o el texto:');
             this.opcionesSexo.forEach(opcion => {
               this.addBotMessage(`${opcion.numero}. ${opcion.valor}`);
             });
@@ -367,7 +367,7 @@ export class ChatbotComponent implements OnInit {
             this.addBotMessage('¿Cuáles son las enfermedades o condiciones? (Si no tienes ninguna, escribe "ninguna")');
             this.currentStep++;
           } else {
-            this.addBotMessage('Por favor, selecciona una opción válida o escribe el sexo correctamente');
+            this.addBotMessage('Por favor, selecciona una opción válida o escribe el género correctamente');
           }
         }
         break;
@@ -378,7 +378,7 @@ export class ChatbotComponent implements OnInit {
         } else {
           this.pacienteData.enfermedades = message.trim();
         }
-        this.addBotMessage('¿Cuál es el número de teléfono del cuidador? (Si eres el paciente, escribe tu número)');
+        this.addBotMessage('¿Cuál es el número de teléfono del cuidador? (Si eres el paciente, escribe el número)');
         this.currentStep++;
         break;
 

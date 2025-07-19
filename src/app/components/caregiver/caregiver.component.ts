@@ -23,7 +23,7 @@ export class CaregiverComponent implements OnInit, OnDestroy {
       route: '/medicines'
     },
     {
-      title: 'Recordatorios',
+      title: 'Activar dispensador',
       icon: 'assets/images/recordatorio.jpg',
       route: '/recordatorios'
     },
@@ -46,12 +46,12 @@ export class CaregiverComponent implements OnInit, OnDestroy {
 
   otherFunctions = [
     {
-      title: 'Familiar de Apoyo',
+      title: 'Vincular cuidador',
       icon: 'assets/images/apoyo.jpg',
       route: '/support-family'
     },
     {
-      title: 'Educativo',
+      title: '¿Que estoy tomando?',
       icon: 'assets/images/educativo.jpg',
       route: '/educativo'
     }
