@@ -1,0 +1,10 @@
+<div class="contenedor">
+  <h2>¿Qué estoy tomando?</h2>
+  <div class="med-lista">
+    <div *ngFor="let med of medicamentos" class="med-card">
+      <img [src]="med.imagen" alt="{{ med.nombre }}">
+      <h3>{{ med.nombre }}</h3>
+      <p>{{ med.descripcion }}</p>
+    </div>
+  </div>
+</div>

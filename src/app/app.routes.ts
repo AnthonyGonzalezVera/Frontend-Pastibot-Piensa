@@ -6,6 +6,7 @@ export const routes: Routes = [
   { path: 'welcome', loadComponent: () => import('./components/welcome/welcome.component').then(m => m.WelcomeComponent) },
   { path: 'login', loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent) },
   { path: 'register', loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent) },
+
   { 
     path: 'caregiver', 
     loadComponent: () => import('./components/caregiver/caregiver.component').then(m => m.CaregiverComponent),
@@ -67,6 +68,13 @@ export const routes: Routes = [
       .then(m => m.ActivarDispensadorComponent),
     canActivate: [AuthGuard]
   },
+{
+  path: 'que-estoy-tomando',
+  loadComponent: () => import('./components/que-estoy-tomando/que-estoy-tomando.component')
+    .then(m => m.QueEstoyTomandoComponent),
+  canActivate: [AuthGuard]
+},
+
   { 
     path: '**', 
     redirectTo: '' 

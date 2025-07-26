@@ -54,7 +54,7 @@ export class CaregiverComponent implements OnInit, OnDestroy {
     {
       title: '¿Que estoy tomando?',
       icon: 'assets/images/educativo.jpg',
-      route: '/educativo'
+      route: '/que-estoy-tomando' 
     }
   ];
 
