@@ -22,11 +22,12 @@ export class CaregiverComponent implements OnInit, OnDestroy {
       icon: 'assets/images/calendario.jpg',
       route: '/medicines'
     },
-    {
-      title: 'Activar dispensador',
-      icon: 'assets/images/recordatorio.jpg',
-      route: '/recordatorios'
-    },
+   {
+  title: 'Activar dispensador',
+  icon: 'assets/images/recordatorio.jpg',
+  route: '/activar-dispensador'   // ✅ Ruta correcta
+},
+
     {
       title: 'Historial de medicamento',
       icon: 'assets/images/historial.jpg',

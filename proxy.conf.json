@@ -1,0 +1,11 @@
+{
+  "/esp32": {
+    "target": "http://192.168.0.4",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/esp32": ""
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>💊 Programar Medicamento</h1>
+
+  <form (ngSubmit)="activarDispensador()">
+    <label for="med">Selecciona medicamento:</label>
+    <select id="med" [(ngModel)]="med" name="med" required>
+      <option *ngFor="let m of medicamentos" [value]="m.id">
+        {{ m.nombre }}
+      </option>
+    </select>
+
+    <label for="cant">Cantidad de píldoras:</label>
+    <input
+      type="number"
+      [(ngModel)]="cant"
+      id="cant"
+      name="cant"
+      min="1"
+      required
+    />
+
+    <button type="submit">✅ Activar dispensador</button>
+  </form>
+</div>

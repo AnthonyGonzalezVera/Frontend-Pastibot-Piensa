@@ -9,6 +9,8 @@ import { MedicineDetailComponent } from './components/medicine-detail/medicine-d
 import { PatientList } from './components/patient-list/patient-list';
 import { PacienteFormComponent } from './components/paciente-form/paciente-form.component';
 import { SupportFamilyComponent } from './components/support-family/support-family.component';
+import { ActivarDispensadorComponent } from './components/activar-dispensador/activar-dispensador.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,5 +23,7 @@ export const routes: Routes = [
   { path: 'pacientes', component: PatientList, canActivate: [AuthGuard] },
   { path: 'pacientes/nuevo', component: PacienteFormComponent, canActivate: [AuthGuard] },
   { path: 'apoyo', component: SupportFamilyComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/login' },
+  { path: 'activar-dispensador', component: ActivarDispensadorComponent, canActivate: [AuthGuard] }
+
 ]; 

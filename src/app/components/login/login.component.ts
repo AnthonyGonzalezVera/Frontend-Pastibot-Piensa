@@ -41,7 +41,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe({
-        next: () => {
+        next: (res: any) => {
+          // ✅ GUARDAR EL TOKEN EN LOCALSTORAGE
+          localStorage.setItem('token', res.access_token);
+
+          // ✅ REDIRECCIONAR
           this.router.navigate(['/caregiver']);
         },
         error: (err) => {
@@ -51,4 +55,4 @@ export class LoginComponent {
       });
     }
   }
-} 
+}

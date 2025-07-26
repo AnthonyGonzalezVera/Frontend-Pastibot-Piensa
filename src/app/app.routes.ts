@@ -61,6 +61,12 @@ export const routes: Routes = [
     loadComponent: () => import('./components/patient-list/patient-list').then(m => m.PatientList),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'activar-dispensador',
+    loadComponent: () => import('./components/activar-dispensador/activar-dispensador.component')
+      .then(m => m.ActivarDispensadorComponent),
+    canActivate: [AuthGuard]
+  },
   { 
     path: '**', 
     redirectTo: '' 
