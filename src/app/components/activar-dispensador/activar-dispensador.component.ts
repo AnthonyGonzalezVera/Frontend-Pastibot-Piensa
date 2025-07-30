@@ -14,6 +14,12 @@ export class ActivarDispensadorComponent implements OnInit {
   medicamentos: any[] = [];
   med: number = 1;
   cant: number = 1;
+  dispensador: number = 1;
+
+  // 🟢 Toast
+  mensaje: string = '';
+  tipoMensaje: 'exito' | 'error' = 'exito';
+  mostrandoMensaje = false;
 
   constructor(private hardwareService: HardwareService) {}
 
@@ -24,18 +30,11 @@ export class ActivarDispensadorComponent implements OnInit {
   obtenerMedicamentosDesdeBackend(): void {
     this.hardwareService.getMedicamentosDesdeBackend().subscribe({
       next: (data: any[]) => {
-        // ✅ Resetear antes de cargar para evitar acumulación
-        this.medicamentos = [];
-
-        // ✅ Eliminar duplicados por ID
         const unicos = data.filter(
           (med, index, self) =>
-            index === self.findIndex((m) => m.id === med.id)
+            index === self.findIndex((m) => m.nombre === med.nombre)
         );
-
         this.medicamentos = unicos;
-
-        // ✅ Seleccionar el primero si existe
         if (this.medicamentos.length > 0) {
           this.med = this.medicamentos[0].id;
         }
@@ -47,24 +46,32 @@ export class ActivarDispensadorComponent implements OnInit {
   }
 
   activarDispensador(): void {
-    this.hardwareService.activarDispensador().subscribe({
+    const seleccionado = this.medicamentos.find(m => m.id === this.med);
+    const nombre = seleccionado ? seleccionado.nombre : '';
+
+    const body = {
+      nombre,
+      dispensador: this.dispensador,
+      cantidad: this.cant
+    };
+
+    this.hardwareService.programarMedicamentoDirecto(body).subscribe({
       next: () => {
-        alert('✅ Dispensador listo. Toca el sensor físico.');
+        this.mostrarToast('✅ Medicamento programado correctamente.', 'exito');
       },
       error: () => {
-        alert('⚠️ No se pudo activar el dispensador.');
+        this.mostrarToast('⚠️ No se pudo comunicar con el dispensador.', 'error');
       }
     });
   }
 
-  programar(): void {
-    this.hardwareService.programarMedicamento(this.med, this.cant).subscribe({
-      next: () => {
-        alert('✅ Medicamento programado correctamente.');
-      },
-      error: () => {
-        alert('⚠️ No se pudo programar el medicamento.');
-      }
-    });
+  mostrarToast(mensaje: string, tipo: 'exito' | 'error') {
+    this.mensaje = mensaje;
+    this.tipoMensaje = tipo;
+    this.mostrandoMensaje = true;
+
+    setTimeout(() => {
+      this.mostrandoMensaje = false;
+    }, 3000);
   }
 }

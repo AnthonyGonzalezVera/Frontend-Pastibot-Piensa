@@ -49,3 +49,39 @@ button:hover {
 div[innerHTML] {
   margin-top: 30px;
 }
+
+/* ✅ TOAST VISUAL */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  animation: fade 0.3s ease-in-out;
+  max-width: 90%;
+  text-align: center;
+}
+
+.toast-exito {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

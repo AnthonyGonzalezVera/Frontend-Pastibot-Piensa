@@ -2,6 +2,7 @@
   <h1>💊 Programar Medicamento</h1>
 
   <form (ngSubmit)="activarDispensador()">
+    <!-- Medicamento -->
     <label for="med">Selecciona medicamento:</label>
     <select id="med" [(ngModel)]="med" name="med" required>
       <option *ngFor="let m of medicamentos" [value]="m.id">
@@ -9,6 +10,13 @@
       </option>
     </select>
 
+    <!-- Dispensador -->
+    <label for="dispensador">Selecciona dispensador:</label>
+    <select id="dispensador" [(ngModel)]="dispensador" name="dispensador" required>
+      <option *ngFor="let d of [1, 2, 3, 4]" [value]="d">Dispensador {{ d }}</option>
+    </select>
+
+    <!-- Cantidad -->
     <label for="cant">Cantidad de píldoras:</label>
     <input
       type="number"
@@ -19,6 +27,12 @@
       required
     />
 
+    <!-- Botón -->
     <button type="submit">✅ Activar dispensador</button>
   </form>
+</div>
+
+<!-- Toast -->
+<div *ngIf="mostrandoMensaje" [ngClass]="tipoMensaje === 'exito' ? 'toast-exito' : 'toast-error'" class="toast">
+  {{ mensaje }}
 </div>
