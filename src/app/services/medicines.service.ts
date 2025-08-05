@@ -33,23 +33,33 @@ export class MedicinesService {
 
   constructor(private http: HttpClient) {}
 
+  // ✅ Medicamentos simples
   getMedicines(): Observable<Medicine[]> {
     return this.http.get<Medicine[]>(this.apiUrl);
   }
 
+  // ✅ Medicamentos completos para la agenda (diario, semanal, mensual)
+  getMedicinesAgenda(): Observable<Medicine[]> {
+    return this.http.get<Medicine[]>(`${this.apiUrl}/agenda`);
+  }
+
+  // ✅ Medicamento por ID
   getMedicine(id: number): Observable<Medicine> {
     return this.http.get<Medicine>(`${this.apiUrl}/${id}`);
   }
 
+  // ✅ Crear
   createMedicine(medicine: Medicine): Observable<Medicine> {
     return this.http.post<Medicine>(this.apiUrl, medicine);
   }
 
+  // ✅ Editar
   updateMedicine(id: number, medicine: Partial<Medicine>): Observable<Medicine> {
     return this.http.patch<Medicine>(`${this.apiUrl}/${id}`, medicine);
   }
 
+  // ✅ Eliminar
   deleteMedicine(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
-} 
+}

@@ -9,6 +9,7 @@
   <h1 class="title">Todo tu plan en un solo lugar</h1>
 
   <div class="tabs">
+    <button class="tab-button" [class.active]="activeTab === 'all'" (click)="setActiveTab('all')">Todos</button>
     <button class="tab-button" [class.active]="activeTab === 'daily'" (click)="setActiveTab('daily')">Diario</button>
     <button class="tab-button" [class.active]="activeTab === 'weekly'" (click)="setActiveTab('weekly')">Semanal</button>
     <button class="tab-button" [class.active]="activeTab === 'monthly'" (click)="setActiveTab('monthly')">Mensual</button>
@@ -28,15 +29,14 @@
           </div>
           <div class="card-body">
             <div class="medicine-item" *ngFor="let medicine of group.medicines">
-              <img [src]="medicine.dosis.includes('tableta') ? 'assets/images/medicine-pill.jpg' : 'assets/images/medicine-syringe.jpg'" alt="Medicine Icon" class="medicine-icon">
+              <img
+                [src]="medicine.dosis.includes('tableta') ? 'assets/images/medicine-pill.jpg' : 'assets/images/medicine-syringe.jpg'"
+                alt="Medicine Icon"
+                class="medicine-icon">
               <span>{{ medicine.nombre }}</span>
               <span class="time">
-                <ng-container *ngIf="isToday(medicine.horaFecha)">
-                  {{ medicine.horaFecha | date:'shortTime' }}
-                </ng-container>
-                <ng-container *ngIf="!isToday(medicine.horaFecha)">
-                  {{ medicine.horaFecha | date:'shortDate' }}
-                </ng-container>
+                <span class="tag-label">{{ getLabelForDate(medicine.horaFecha) }}</span>
+                &nbsp;{{ medicine.horaFecha | date:'shortTime' }}
               </span>
             </div>
           </div>
@@ -57,4 +57,4 @@
   message="¿Estás seguro de que deseas eliminar todos los medicamentos de hoy para este paciente?"
   (confirm)="onConfirmDelete()"
   (cancel)="onCancelDelete()"
-></app-confirm-modal> 
+></app-confirm-modal>

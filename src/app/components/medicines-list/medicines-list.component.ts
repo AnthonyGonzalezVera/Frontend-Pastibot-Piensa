@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MedicinesService, Medicine } from '../../services/medicines.service';
-import { PacientesService, Paciente } from '../../services/pacientes.service';
+import { PacientesService } from '../../services/pacientes.service';
 import { DatePipe } from '@angular/common';
 import { ToastService } from '../../services/toast.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
@@ -21,7 +21,7 @@ interface GroupedMedicine {
   styleUrls: ['./medicines-list.component.scss']
 })
 export class MedicinesListComponent implements OnInit {
-  activeTab: 'daily' | 'weekly' | 'monthly' = 'daily';
+  activeTab: 'all' | 'daily' | 'weekly' | 'monthly' = 'all';
   groupedMedicines: GroupedMedicine[] = [];
   isLoading = false;
   showConfirmModal = false;
@@ -38,26 +38,29 @@ export class MedicinesListComponent implements OnInit {
     this.loadMedicines();
   }
 
-  isToday(dateString: string): boolean {
-    const today = new Date();
-    const date = new Date(dateString);
-    return date.toDateString() === today.toDateString();
-  }
-
-  isDailyFrequency(frecuencia: string): boolean {
-    const dailyFrequencies = [
-      'cada 4 horas',
-      'cada 6 horas',
-      'cada 8 horas',
-      'cada 12 horas',
-      'cada 24 horas'
-    ];
-    return dailyFrequencies.includes(frecuencia.toLowerCase());
-  }
-
-  setActiveTab(tab: 'daily' | 'weekly' | 'monthly'): void {
+  setActiveTab(tab: 'all' | 'daily' | 'weekly' | 'monthly'): void {
     this.activeTab = tab;
     this.loadMedicines();
+  }
+
+  isToday(dateString: string): boolean {
+    const now = new Date();
+    const date = new Date(dateString);
+    return (
+      date.getDate() === now.getDate() &&
+      date.getMonth() === now.getMonth() &&
+      date.getFullYear() === now.getFullYear()
+    );
+  }
+
+  getLabelForDate(dateStr: string): string {
+    const date = new Date(dateStr);
+    const today = new Date();
+
+    if (this.isToday(dateStr)) return 'HOY';
+    if (this.isInThisWeek(date, today)) return 'Esta semana';
+    if (this.isInThisMonth(date, today)) return 'Este mes';
+    return date.toLocaleDateString();
   }
 
   navigateBack(): void {
@@ -74,85 +77,82 @@ export class MedicinesListComponent implements OnInit {
     this.isLoading = true;
     this.medicinesService.getMedicines().subscribe({
       next: (medicines) => {
-        const today = new Date();
-        const filteredMedicines = medicines.filter(medicine => {
-          const medicineDate = new Date(medicine.horaFecha);
+        const allMedicines: Medicine[] = [];
+
+        medicines.forEach(med => {
+          const expanded = this.expandMedicineAgenda(med);
+          allMedicines.push(...expanded);
+        });
+
+        const filteredMedicines = allMedicines.filter(medicine => {
+          const dateLocal = new Date(medicine.horaFecha);
           switch (this.activeTab) {
             case 'daily':
-              return medicineDate.toDateString() === today.toDateString();
+              return this.isToday(dateLocal.toISOString());
             case 'weekly':
-              const weekStart = new Date(today);
-              weekStart.setDate(today.getDate() - today.getDay());
-              const weekEnd = new Date(weekStart);
-              weekEnd.setDate(weekStart.getDate() + 6);
-              return medicineDate >= weekStart && medicineDate <= weekEnd;
+              return this.isInThisWeek(dateLocal, new Date());
             case 'monthly':
-              return medicineDate.getMonth() === today.getMonth() && 
-                     medicineDate.getFullYear() === today.getFullYear();
+              return this.isInThisMonth(dateLocal, new Date());
+            case 'all':
             default:
-              return false;
+              return true;
           }
         });
+
         this.groupedMedicines = this.groupMedicinesByPatient(filteredMedicines);
         this.isLoading = false;
       },
-      error: (error) => {
-        console.error('Error loading medicines:', error);
+      error: () => {
+        this.toastService.show('Error al cargar los medicamentos', 'error');
         this.isLoading = false;
-        this.toastService.show('Error al cargar los medicamentos', 'error');
       }
     });
   }
 
-  openDeleteConfirmation(patientId: number | null, event: Event): void {
-    event.stopPropagation();
-    if (!patientId) return;
-    
-    this.selectedPatientId = patientId;
-    this.showConfirmModal = true;
+  private expandMedicineAgenda(medicine: Medicine): Medicine[] {
+    const frequencyMap: { [key: string]: number } = {
+      'cada 4 horas': 4 * 60 * 60 * 1000,
+      'cada 6 horas': 6 * 60 * 60 * 1000,
+      'cada 8 horas': 8 * 60 * 60 * 1000,
+      'cada 12 horas': 12 * 60 * 60 * 1000,
+      'cada 24 horas': 24 * 60 * 60 * 1000,
+      'cada 48 horas': 48 * 60 * 60 * 1000,
+      'cada 72 horas': 72 * 60 * 60 * 1000
+    };
+
+    const freq = medicine.frecuencia?.toLowerCase();
+    const interval = frequencyMap[freq] || 24 * 60 * 60 * 1000;
+
+    const baseDate = new Date(medicine.horaFecha);
+    const totalDoses = medicine.totalDoses || 1;
+
+    const expanded: Medicine[] = [];
+    for (let i = 0; i < totalDoses; i++) {
+      const newMed = { ...medicine };
+      newMed.horaFecha = new Date(baseDate.getTime() + i * interval).toISOString();
+      expanded.push(newMed);
+    }
+
+    return expanded;
   }
 
-  onConfirmDelete(): void {
-    if (!this.selectedPatientId) return;
+  private isInThisWeek(date: Date, today: Date): boolean {
+    const start = new Date(today);
+    start.setDate(today.getDate() - today.getDay());
+    start.setHours(0, 0, 0, 0);
 
-    this.medicinesService.getMedicines().subscribe({
-      next: (medicines) => {
-        const today = new Date();
-        const patientMedicines = medicines.filter(medicine => 
-          medicine.pacienteId === this.selectedPatientId && 
-          new Date(medicine.horaFecha).toDateString() === today.toDateString()
-        );
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+    end.setHours(23, 59, 59, 999);
 
-        const deletePromises = patientMedicines.map(medicine => 
-          medicine.id ? this.medicinesService.deleteMedicine(medicine.id).toPromise() : Promise.resolve()
-        );
-
-        Promise.all(deletePromises)
-          .then(() => {
-            this.loadMedicines();
-            this.toastService.show('Medicamentos eliminados exitosamente', 'success');
-          })
-          .catch(error => {
-            console.error('Error deleting medicines:', error);
-            this.toastService.show('Error al eliminar los medicamentos', 'error');
-          })
-          .finally(() => {
-            this.showConfirmModal = false;
-            this.selectedPatientId = null;
-          });
-      },
-      error: (error) => {
-        console.error('Error loading medicines for deletion:', error);
-        this.toastService.show('Error al cargar los medicamentos', 'error');
-        this.showConfirmModal = false;
-        this.selectedPatientId = null;
-      }
-    });
+    return date >= start && date <= end;
   }
 
-  onCancelDelete(): void {
-    this.showConfirmModal = false;
-    this.selectedPatientId = null;
+  private isInThisMonth(date: Date, today: Date): boolean {
+    return (
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
   }
 
   private groupMedicinesByPatient(medicines: Medicine[]): GroupedMedicine[] {
@@ -175,4 +175,52 @@ export class MedicinesListComponent implements OnInit {
 
     return Object.values(groups);
   }
-} 
+
+  openDeleteConfirmation(patientId: number | null, event: Event): void {
+    event.stopPropagation();
+    if (!patientId) return;
+    this.selectedPatientId = patientId;
+    this.showConfirmModal = true;
+  }
+
+  onConfirmDelete(): void {
+    if (!this.selectedPatientId) return;
+
+    this.medicinesService.getMedicines().subscribe({
+      next: (medicines) => {
+        const today = new Date();
+        const patientMedicines = medicines.filter(medicine =>
+          medicine.pacienteId === this.selectedPatientId &&
+          this.isToday(medicine.horaFecha)
+        );
+
+        const deletePromises = patientMedicines.map(medicine =>
+          medicine.id ? this.medicinesService.deleteMedicine(medicine.id).toPromise() : Promise.resolve()
+        );
+
+        Promise.all(deletePromises)
+          .then(() => {
+            this.loadMedicines();
+            this.toastService.show('Medicamentos eliminados exitosamente', 'success');
+          })
+          .catch(() => {
+            this.toastService.show('Error al eliminar los medicamentos', 'error');
+          })
+          .finally(() => {
+            this.showConfirmModal = false;
+            this.selectedPatientId = null;
+          });
+      },
+      error: () => {
+        this.toastService.show('Error al cargar los medicamentos', 'error');
+        this.showConfirmModal = false;
+        this.selectedPatientId = null;
+      }
+    });
+  }
+
+  onCancelDelete(): void {
+    this.showConfirmModal = false;
+    this.selectedPatientId = null;
+  }
+}
