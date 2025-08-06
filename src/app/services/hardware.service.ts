@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class HardwareService {
-  private backendUrl = 'http://localhost:3000';
-  private esp32ProxyUrl = '/esp32';
+  private backendUrl = environment.apiUrl;
+  private esp32ProxyUrl = '/esp32'; // Sigue funcionando por proxy
 
   constructor(private http: HttpClient) {}
 
@@ -15,14 +16,14 @@ export class HardwareService {
     });
   }
 
-  // ✅ Backend con token
+  // ✅ Obtener medicamentos desde el backend con token
   getMedicamentosDesdeBackend() {
     return this.http.get<any[]>(`${this.backendUrl}/medicines`, {
       headers: this.getAuthHeaders()
     });
   }
 
-  // ✅ POST al ESP32
+  // ✅ Enviar programación directa al ESP32
   programarMedicamentoDirecto(data: any) {
     return this.http.post(`${this.esp32ProxyUrl}/programar`, data, {
       responseType: 'text'
