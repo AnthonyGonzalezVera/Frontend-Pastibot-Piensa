@@ -23,27 +23,22 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "styles": ["src/styles.css"]
           },
           "configurations": {
             "production": {
               "budgets": [
-  {
-    "type": "initial",
-    "maximumWarning": "2MB",
-    "maximumError": "5MB"
-  },
-  {
-    "type": "anyComponentStyle",
-    "maximumWarning": "32kB",
-    "maximumError": "48kB"
-  }
-],
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "5MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "32kB",
+                  "maximumError": "48kB"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {
@@ -53,21 +48,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "server": {
-          "builder": "@angular/build:server",
-          "options": {
-            "outputPath": "dist/PastibotFronted",
-            "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputPath": "dist/PastibotFronted",
-              "main": "src/main.server.ts",
-              "tsConfig": "tsconfig.server.json"
-            }
-          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -100,27 +80,6 @@
               }
             ],
             "styles": ["src/styles.css"]
-          }
-        },
-        "prerender": {
-          "builder": "@angular/ssr:prerender",
-          "options": {
-            "browserTarget": "PastibotFronted:build:production",
-            "serverTarget": "PastibotFronted:server:production",
-            "routes": [
-  "/",
-  "/login",
-  "/register",
-  "/chatbot",
-  "/medicines",
-  "/support-family",
-  "/profile-patient",
-  "/caregiver",
-  "/add-medicine",
-  "/activar-dispensador",
-  "/medicine-history"
-]
-
           }
         }
       }
