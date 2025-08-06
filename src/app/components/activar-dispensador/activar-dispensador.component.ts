@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MedicinesService, Medicine } from '../../services/medicines.service';
 import { HardwareService } from '../../services/hardware.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { HardwareService } from '../../services/hardware.service';
   imports: [CommonModule, FormsModule]
 })
 export class ActivarDispensadorComponent implements OnInit {
-  medicamentos: any[] = [];
+  medicamentos: Medicine[] = [];
   med: number = 1;
   cant: number = 1;
   dispensador: number = 1;
@@ -21,22 +22,25 @@ export class ActivarDispensadorComponent implements OnInit {
   tipoMensaje: 'exito' | 'error' = 'exito';
   mostrandoMensaje = false;
 
-  constructor(private hardwareService: HardwareService) {}
+  constructor(
+    private medicinesService: MedicinesService,
+    private hardwareService: HardwareService
+  ) {}
 
   ngOnInit(): void {
     this.obtenerMedicamentosDesdeBackend();
   }
 
   obtenerMedicamentosDesdeBackend(): void {
-    this.hardwareService.getMedicamentosDesdeBackend().subscribe({
-      next: (data: any[]) => {
+    this.medicinesService.getMedicines().subscribe({
+      next: (data: Medicine[]) => {
         const unicos = data.filter(
           (med, index, self) =>
             index === self.findIndex((m) => m.nombre === med.nombre)
         );
         this.medicamentos = unicos;
         if (this.medicamentos.length > 0) {
-          this.med = this.medicamentos[0].id;
+          this.med = this.medicamentos[0].id!;
         }
       },
       error: (error: any) => {
