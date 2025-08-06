@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://backend-pastibot-piensa-1.onrender.com'
+  production: false,
+  apiUrl: 'http://localhost:3000'
 };
