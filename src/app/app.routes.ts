@@ -20,7 +20,8 @@ export const routes: Routes = [
   {
     path: 'support-family/:id',
     loadComponent: () => import('./components/support-family/support-family.component').then(m => m.SupportFamilyComponent),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { renderMode: 'disable' }
   },
   {
     path: 'pacientes/nuevo',
@@ -40,7 +41,8 @@ export const routes: Routes = [
   {
     path: 'medicines/:id',
     loadComponent: () => import('./components/medicine-detail/medicine-detail.component').then(m => m.MedicineDetailComponent),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { renderMode: 'disable' }
   },
   {
     path: 'medicine-history',
@@ -55,7 +57,8 @@ export const routes: Routes = [
   {
     path: 'profile-patient/:id',
     loadComponent: () => import('./components/profile-patient/profile-patient').then(m => m.ProfilePatient),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { renderMode: 'disable' }
   },
   {
     path: 'patient-list',
@@ -64,17 +67,14 @@ export const routes: Routes = [
   },
   {
     path: 'activar-dispensador',
-    loadComponent: () => import('./components/activar-dispensador/activar-dispensador.component')
-      .then(m => m.ActivarDispensadorComponent),
+    loadComponent: () => import('./components/activar-dispensador/activar-dispensador.component').then(m => m.ActivarDispensadorComponent),
     canActivate: [AuthGuard]
   },
-{
-  path: 'que-estoy-tomando',
-  loadComponent: () => import('./components/que-estoy-tomando/que-estoy-tomando.component')
-    .then(m => m.QueEstoyTomandoComponent),
-  canActivate: [AuthGuard]
-},
-
+  {
+    path: 'que-estoy-tomando',
+    loadComponent: () => import('./components/que-estoy-tomando/que-estoy-tomando.component').then(m => m.QueEstoyTomandoComponent),
+    canActivate: [AuthGuard]
+  },
   { 
     path: '**', 
     redirectTo: '' 
