@@ -7,7 +7,7 @@ export class HardwareService {
   private backendUrl = 'https://backend-pastibot-piensa-1.onrender.com';
 
   // 🌍 URL pública del ESP32 a través de ngrok
-  private esp32Url = 'https://685baeb94ef9.ngrok-free.app'; // ⚠️ cambia si ngrok se reinicia
+  private esp32Url = 'https://a2921abc195e.ngrok-free.app'; // ⚠️ cambia si ngrok se reinicia
 
   constructor(private http: HttpClient) {}
 
