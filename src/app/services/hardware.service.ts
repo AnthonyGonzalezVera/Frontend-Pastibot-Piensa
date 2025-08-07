@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class HardwareService {
-  // 🌐 Backend local (solo si usas NestJS en local)
-  private backendUrl = 'http://localhost:3000';
+  // 🌐 Backend público en Render
+  private backendUrl = 'https://backend-pastibot-piensa-1.onrender.com';
 
   // 🌍 URL pública del ESP32 a través de ngrok
   private esp32Url = 'https://685baeb94ef9.ngrok-free.app'; // ⚠️ cambia si ngrok se reinicia
@@ -19,7 +19,7 @@ export class HardwareService {
     });
   }
 
-  // ✅ Obtener medicamentos desde el backend NestJS
+  // ✅ Obtener medicamentos desde el backend NestJS (Render)
   getMedicamentosDesdeBackend() {
     return this.http.get<any[]>(`${this.backendUrl}/medicines`, {
       headers: this.getAuthHeaders()
